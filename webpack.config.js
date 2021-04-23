@@ -31,7 +31,6 @@ module.exports = {
       components: path.resolve(__dirname, 'components'),
       store: path.resolve(__dirname, 'store'),
       constants: path.resolve(__dirname, 'constants'),
-      'react-simple-maps': path.resolve(__dirname, 'modules/react-simple-maps/src/index.js'),
     },
     extensions: [
       '.jsx',

@@ -1,11 +1,11 @@
 import './App.scss'
 import React from 'react'
+import MapC from 'components/Map/MapC'
 
 function App() {
   return (
     <div className='App'>
-      <h2>Welcome to React App</h2>
-      <h3>Date : {new Date().toDateString()}</h3>
+      <MapC />
     </div>
   )
 }

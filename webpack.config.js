@@ -30,6 +30,7 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'components'),
       store: path.resolve(__dirname, 'store'),
+      constants: path.resolve(__dirname, 'constants'),
     },
     extensions: [
       '.jsx',

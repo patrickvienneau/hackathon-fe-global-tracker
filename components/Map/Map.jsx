@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps'
 import LineC from './extensions/Line/LineC'
 import PinC from './extensions/Pin/PinC'
-import ZoomableGroupC from './extensions/ZoomableGroup/ZoomableGroupC'
 import { GEO_TOPO_URL } from 'constants/geography'
 
 const Map = forwardRef(({

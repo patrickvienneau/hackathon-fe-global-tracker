@@ -3,6 +3,7 @@ import testR from './testR'
 
 const computedReducers = {
   testR,
+  // websocketR,
 }
 
 const combinedReducers = combineReducers(computedReducers)

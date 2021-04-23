@@ -23,7 +23,7 @@ const enhancers = compact([
 const composedEnhancers = compose(applyMiddleware(...middlewares), ...enhancers)
 const store = createStore(reducers, {}, composedEnhancers)
 
-store.dispatch(connect('wss://localhost:4001'))
+store.dispatch(connect('ws://localhost:3000'))
 // sagaMiddleware.run(rootFlows)
 
 window.store = store

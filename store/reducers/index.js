@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import testR from './testR'
+import websocketR from './websocketR'
 
 const computedReducers = {
   testR,
-  // websocketR,
+  websocketR,
 }
 
 const combinedReducers = combineReducers(computedReducers)

@@ -1,19 +1,15 @@
+import './Map.scss'
 import React from 'react'
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
+import LineC from './extensions/Line/LineC'
 import { GEO_TOPO_URL } from 'constants/geography'
-
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Annotation,
-} from 'react-simple-maps'
 
 const Map = () => (
   <ComposableMap
-    projection='geoAzimuthalEqualArea'
+    className='Map'
     projectionConfig={{
-      rotate: [-20.0, -52.0, 0],
-      scale: 700,
+      rotate: [-10, 0, 0],
+      scale: 147,
     }}
   >
     <Geographies
@@ -28,20 +24,22 @@ const Map = () => (
         ))
       }
     </Geographies>
-    <Annotation
-      subject={[2.3522, 48.8566]}
-      dx={-90}
-      dy={-30}
-      connectorProps={{
-        stroke: '#FF5533',
-        strokeWidth: 3,
-        strokeLinecap: 'round',
-      }}
-    >
-      <text x='-8' textAnchor='end' alignmentBaseline='middle' fill='#F53'>
-        Paris
-      </text>
-    </Annotation>
+
+    <LineC
+      from={[2.3522, 48.8566]}
+      to={[-74.006, 40.7128]}
+      stroke="#FF5533"
+      strokeWidth={1}
+      strokeLinecap="round"
+    />
+
+    <LineC
+      from={[90.3522, -10.8566]}
+      to={[-74.006, 40.7128]}
+      stroke="#FF5533"
+      strokeWidth={1}
+      strokeLinecap="round"
+    />
   </ComposableMap>
 )
 

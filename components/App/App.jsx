@@ -4,7 +4,7 @@ import MapC from 'components/Map/MapC'
 
 const App = () => (
   <div className='App'>
-    <MapC />
+    <MapC isGlobe />
   </div>
 )
 

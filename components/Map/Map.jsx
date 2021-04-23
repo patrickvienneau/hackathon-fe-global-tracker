@@ -1,20 +1,33 @@
 import './Map.scss'
-import React from 'react'
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
+import React, { forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps'
 import LineC from './extensions/Line/LineC'
 import PinC from './extensions/Pin/PinC'
 import ZoomableGroupC from './extensions/ZoomableGroup/ZoomableGroupC'
 import { GEO_TOPO_URL } from 'constants/geography'
 
-const Map = () => (
-  <ComposableMap
+const Map = forwardRef(({
+  xOffset = 0,
+  yOffset = 0,
+  isGlobe = false,
+  ...props
+}, ref) => (
+  <div
+    {...props}
     className='Map'
-    projectionConfig={{
-      rotate: [-10, 0, 0],
-      scale: 147,
-    }}
+    ref={ref}
   >
-    <ZoomableGroupC>
+    <ComposableMap
+      className='Map'
+      projection={isGlobe ? 'geoOrthographic' : undefined}
+      projectionConfig={{
+        rotate: [xOffset, yOffset, 0],
+        scale: 200,
+      }}
+    >
+      <Graticule stroke="#DDD" />
+
       <Geographies
         geography={GEO_TOPO_URL}
         fill='#D6D6DA'
@@ -36,17 +49,23 @@ const Map = () => (
         strokeLinecap="round"
       />
 
-      {/*<LineC
+      <LineC
         from={[90.3522, -10.8566]}
         to={[-74.006, 40.7128]}
         stroke="#FF5533"
         strokeWidth={1}
         strokeLinecap="round"
-      />*/}
+      />
 
       <PinC coordinates={[-120.006, 35.7128]} />
-    </ZoomableGroupC>
-  </ComposableMap>
-)
+    </ComposableMap>
+  </div>
+))
+
+Map.propTypes = {
+  xOffset: PropTypes.number,
+  yOffset: PropTypes.number,
+  isGlobe: PropTypes.bool,
+}
 
 export default Map

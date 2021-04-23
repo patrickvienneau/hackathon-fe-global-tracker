@@ -9,6 +9,8 @@ const ZoomableGroup = ({
 }) => (
   <RSMZoomableGroup
     {...props}
+    zoom={1}
+    center={[0, 0]}
     translateExtent={[
       [0, -windowHeight],
       [windowWidth, windowHeight],

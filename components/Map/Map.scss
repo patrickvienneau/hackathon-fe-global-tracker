@@ -1,3 +1,7 @@
 .Map {
-
+  .rsm-geography {
+    &:focus {
+      outline: none;
+    }
+  }
 }

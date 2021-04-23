@@ -1,0 +1,90 @@
+
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "globals": {
+    "should": true,
+    "describe": true,
+    "beforeAll": true,
+    "beforeEach": true,
+    "afterAll": true,
+    "afterEach": true,
+    "it": true,
+    "expect": true,
+    "assert": true,
+    "jest": true,
+    "Event": true
+  },
+  "rules": {
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ],
+    "no-unused-expressions": 0,
+    "react/no-deprecated": 2,
+    "react/no-did-update-set-state": 0,
+    "react/jsx-fragments": [
+      2,
+      "element"
+    ],
+    "no-console": 2,
+    "no-debugger": 2,
+    "no-unused-vars": [
+      2,
+      {
+        "vars": "all",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "react/jsx-no-undef": [
+      2,
+      {
+        "allowGlobals": true
+      }
+    ],
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "flowtype/delimiter-dangle": [
+      2,
+      "always-multiline"
+    ],
+    "quote-props": 0,
+    "react/jsx-no-target-blank": 0,
+    "quotes": [
+      2,
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "react/jsx-curly-brace-presence": [
+      2,
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ],
+    "react/jsx-handler-names": 0,
+    "array-bracket-spacing": 0
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false,
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

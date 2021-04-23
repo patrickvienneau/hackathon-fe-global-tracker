@@ -44,8 +44,8 @@ class MapC extends Component {
 
     const shouldCaptureMouseMove = isGlobe && mouseDown
     shouldCaptureMouseMove && this.setState(({ xOffset: prevXOffset, yOffset: prevYOffset }) => ({
-      xOffset: prevXOffset + movementX,
-      yOffset: prevYOffset - movementY,
+      xOffset: prevXOffset + (movementX / 2),
+      yOffset: prevYOffset - (movementY / 2),
     }))
   }
 

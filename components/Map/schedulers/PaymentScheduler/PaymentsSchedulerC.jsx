@@ -11,8 +11,7 @@ import concat from 'lodash/concat'
 import pull from 'lodash/pull'
 import find from 'lodash/find'
 import assign from 'lodash/assign'
-
-const COOLDOWN_DURATION_MS = 5000
+import { DISPLAY_COOLDOWN_DURATION_MS } from 'constants/mapConstants'
 
 const mapStateToProps = () => {
   return {
@@ -67,7 +66,7 @@ class PaymentSchedulerC extends PureComponent {
     }), () => {
       setTimeout(() => {
         this.unregisterPayment(paymentId)
-      }, COOLDOWN_DURATION_MS)
+      }, DISPLAY_COOLDOWN_DURATION_MS)
     })
   }
 

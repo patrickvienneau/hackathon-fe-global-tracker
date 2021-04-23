@@ -1,0 +1,1 @@
+export const DISPLAY_COOLDOWN_DURATION_MS = 5000

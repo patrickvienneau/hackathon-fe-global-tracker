@@ -2,8 +2,8 @@ import './Map.scss'
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps'
-import LineC from './extensions/Line/LineC'
 import PinC from './extensions/Pin/PinC'
+import PaymentSchedulerC from 'components/Map/schedulers/PaymentScheduler/PaymentsSchedulerC'
 import { GEO_TOPO_URL } from 'constants/geography'
 
 const Map = forwardRef(({
@@ -40,21 +40,7 @@ const Map = forwardRef(({
         }
       </Geographies>
 
-      <LineC
-        from={[2.3522, 48.8566]}
-        to={[-74.006, 40.7128]}
-        stroke="#FF5533"
-        strokeWidth={1}
-        strokeLinecap="round"
-      />
-
-      <LineC
-        from={[90.3522, -10.8566]}
-        to={[-74.006, 40.7128]}
-        stroke="#FF5533"
-        strokeWidth={1}
-        strokeLinecap="round"
-      />
+      <PaymentSchedulerC />
 
       <PinC coordinates={[-120.006, 35.7128]} />
     </ComposableMap>

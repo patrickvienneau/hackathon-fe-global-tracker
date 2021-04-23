@@ -1,0 +1,30 @@
+@keyframes grow {
+  to {
+    r: 25;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.rsm-marker {
+  circle {
+    fill: #F53F53;
+
+    &.animate {
+      animation-name: grow, fade;
+      animation-duration: 1700ms;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in;
+      animation-delay: 0ms;
+      animation-iteration-count: 1;
+    }
+  }
+}

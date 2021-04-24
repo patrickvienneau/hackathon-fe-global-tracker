@@ -17,12 +17,16 @@ class MapC extends Component {
     window.addEventListener('mousedown', this.handleMouseDown)
     window.addEventListener('mouseup', this.handleMouseUp)
     window.addEventListener('mousemove', this.handleMouseMove)
+
+    this.startRotation()
   }
 
   componentWillUnmount () {
     window.removeEventListener('mousedown', this.handleMouseDown)
     window.removeEventListener('mouseup', this.handleMouseUp)
     window.removeEventListener('mousemove', this.handleMouseMove)
+
+    this.stopRotation()
   }
 
   handleMouseDown = () => {
@@ -47,6 +51,20 @@ class MapC extends Component {
       xOffset: prevXOffset + (movementX / 2),
       yOffset: prevYOffset - (movementY / 2),
     }))
+  }
+
+  startRotation = () => {
+    this.stopRotation()
+
+    this.rotationInterval = setInterval(() => {
+      this.setState(({ xOffset: prevXOffset }) => ({
+        xOffset: prevXOffset - 0.1,
+      }))
+    }, 50)
+  }
+
+  stopRotation = () => {
+    clearInterval(this.rotationInterval)
   }
 
   render () {

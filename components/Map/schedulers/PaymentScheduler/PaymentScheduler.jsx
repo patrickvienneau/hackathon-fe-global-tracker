@@ -1,24 +1,32 @@
-import React, { Fragment } from 'react'
+import './PaymentScheduler.scss'
+import React from 'react'
 import PropTypes from 'prop-types'
-import LineC from 'components/Map/extensions/Line/LineC'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import PaymentMarkerC from 'components/Map/components/PaymentMarker/PaymentMarkerC'
 import map from 'lodash/map'
 
 const PaymentScheduler = ({
   payments = [],
 }) => (
-  <Fragment>
-    {
-      map(payments, (payment) => (
-        <LineC
-          from={[2.3522, 48.8566]}
-          to={[-74.006, 40.7128]}
-          stroke="#FF5533"
-          strokeWidth={1}
-          strokeLinecap="round"
-        />
-      ))
-    }
-  </Fragment>
+  <g className='PaymentScheduler'>
+    <TransitionGroup
+      component='g'
+    >
+      {
+        map(payments, (payment, ii) => (
+          <CSSTransition
+            key={ii}
+            in={true}
+            timeout={5000}
+            classNames='schedulerFade'
+            unmountOnExit
+          >
+            <PaymentMarkerC />
+          </CSSTransition>
+        ))
+      }
+    </TransitionGroup>
+  </g>
 )
 
 PaymentScheduler.propTypes = {

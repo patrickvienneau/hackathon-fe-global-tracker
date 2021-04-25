@@ -8,17 +8,19 @@ class MapC extends Component {
 
     this.state = {
       mouseDown: false,
-      xOffset: 0,
+      xOffset: 70,
       yOffset: 0,
     }
   }
 
   componentDidMount () {
+    const { isGlobe } = this.props
+
     window.addEventListener('mousedown', this.handleMouseDown)
     window.addEventListener('mouseup', this.handleMouseUp)
     window.addEventListener('mousemove', this.handleMouseMove)
 
-    this.startRotation()
+    isGlobe && this.startRotation()
   }
 
   componentWillUnmount () {

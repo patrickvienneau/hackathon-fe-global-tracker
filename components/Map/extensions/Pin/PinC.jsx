@@ -1,4 +1,4 @@
-import React, { PureComponent, useContext } from 'react'
+import React, { PureComponent } from 'react'
 import { MapContext } from 'react-simple-maps'
 import PropTypes from 'prop-types'
 import Pin from './Pin'

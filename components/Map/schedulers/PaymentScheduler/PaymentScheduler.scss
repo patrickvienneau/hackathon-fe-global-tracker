@@ -1,0 +1,12 @@
+.PaymentScheduler {
+  .schedulerFade {
+    &-exit {
+      opacity: 1;
+    }
+
+    &-exit-active {
+      opacity: 0;
+      transition: opacity 5000ms ease-in-out 0ms;
+    }
+  }
+}

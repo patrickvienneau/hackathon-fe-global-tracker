@@ -1,6 +1,6 @@
 @keyframes grow {
   to {
-    r: 25;
+    r: 15;
   }
 }
 
@@ -16,15 +16,12 @@
 
 .rsm-marker {
   &.hidden {
-    display: none;
+    opacity: 0;
   }
 
   circle {
-    fill: #F53F53;
-
     &.animate {
       animation-name: grow, fade;
-      animation-duration: 1700ms;
       animation-fill-mode: forwards;
       animation-timing-function: ease-in;
       animation-delay: 0ms;

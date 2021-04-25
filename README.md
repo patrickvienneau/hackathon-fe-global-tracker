@@ -12,6 +12,12 @@ npm ci
 npm run start
 ```
 
+## Demo
+`npm run start`
+
+1. http://localhost:9000
+2. file:///Users/patrick.vienneau/Sites/hackathon-fe-global-tracker/public/marketing.html
+
 ## Documentation
 
 ### Setup

@@ -10,6 +10,7 @@ const Map = forwardRef(({
   xOffset = 0,
   yOffset = 0,
   isGlobe = false,
+  scale = 200,
   ...props
 }, ref) => (
   <div
@@ -22,7 +23,7 @@ const Map = forwardRef(({
       projection={isGlobe ? 'geoOrthographic' : undefined}
       projectionConfig={{
         rotate: [xOffset, yOffset, 0],
-        scale: 200,
+        scale,
       }}
     >
       <Graticule stroke="#DDD" />
@@ -51,6 +52,7 @@ Map.propTypes = {
   xOffset: PropTypes.number,
   yOffset: PropTypes.number,
   isGlobe: PropTypes.bool,
+  scale: PropTypes.number,
 }
 
 export default Map

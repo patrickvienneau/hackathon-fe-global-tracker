@@ -1,8 +1,55 @@
+@import 'styles/variables';
+
 .App {
   opacity: 0;
   transition: opacity ease-in-out 1000ms;
+  display: flex;
+  height: 100%;
 
   &.shouldRender {
     opacity: 1;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 260px;
+    border-right: 1px solid $grey-600;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    > * {
+      flex: 1 0 50%;
+    }
+  }
+
+  .mapContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+
+    .Map {
+      .PaymentMarker {
+        .Line {
+          stroke: #f3722c;
+        }
+
+        .Pin {
+          circle {
+            fill: #f3722c;
+          }
+        }
+      }
+
+      .AccountMarker {
+        .Pin {
+          circle {
+            fill: #577590;
+          }
+        }
+      }
+    }
   }
 }

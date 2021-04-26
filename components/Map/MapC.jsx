@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Map from './Map'
 import now from 'lodash/now'
-import round from 'lodash/round'
 
 class MapC extends Component {
   constructor (props) {
@@ -22,7 +21,7 @@ class MapC extends Component {
     window.addEventListener('mouseup', this.handleMouseUp)
     window.addEventListener('mousemove', this.handleMouseMove)
 
-    // isGlobe && this.startRotation()
+    isGlobe && this.startRotation()
   }
 
   componentWillUnmount () {
@@ -93,6 +92,10 @@ class MapC extends Component {
       />
     )
   }
+}
+
+MapC.defaultProps = {
+  isGlobe: true,
 }
 
 MapC.propTypes = {

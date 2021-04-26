@@ -5,7 +5,7 @@ import Line from 'components/Map/extensions/Line/Line'
 import PinC from 'components/Map/extensions/Pin/PinC'
 
 const PaymentMarker = forwardRef(({
-  pathElLength = 250,
+  offsetLength = 250,
   animationDuration,
   showEndPin = false,
   fromCoordinates = [],
@@ -23,8 +23,8 @@ const PaymentMarker = forwardRef(({
       strokeWidth={1}
       strokeLinecap='round'
       style={{
-        strokeDasharray: pathElLength,
-        strokeDashoffset: pathElLength,
+        strokeDasharray: offsetLength,
+        strokeDashoffset: offsetLength,
         animationDuration: `${animationDuration}ms`,
       }}
     />
@@ -40,7 +40,7 @@ const PaymentMarker = forwardRef(({
 ))
 
 PaymentMarker.propTypes = {
-  pathElLength: PropTypes.number,
+  offsetLength: PropTypes.number,
   animationDuration: PropTypes.number,
   showEndPin: PropTypes.bool,
   fromCoordinates: PropTypes.array,

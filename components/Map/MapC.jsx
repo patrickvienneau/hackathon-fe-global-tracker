@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Map from './Map'
+import now from 'lodash/now'
+import round from 'lodash/round'
 
 class MapC extends Component {
   constructor (props) {
@@ -20,7 +22,7 @@ class MapC extends Component {
     window.addEventListener('mouseup', this.handleMouseUp)
     window.addEventListener('mousemove', this.handleMouseMove)
 
-    isGlobe && this.startRotation()
+    // isGlobe && this.startRotation()
   }
 
   componentWillUnmount () {
@@ -58,15 +60,26 @@ class MapC extends Component {
   startRotation = () => {
     this.stopRotation()
 
-    this.rotationInterval = setInterval(() => {
+    this.lastAnimationTimestamp = now()
+    this.rotationAnimationFrame = requestAnimationFrame(this.rotate)
+  }
+
+  rotate = () => {
+    const interval = now() - this.lastAnimationTimestamp
+
+    if (interval > 1000 / 60) {
+      this.lastAnimationTimestamp = now()
+
       this.setState(({ xOffset: prevXOffset }) => ({
         xOffset: prevXOffset - 0.1,
       }))
-    }, 50)
+    }
+
+    this.rotationAnimationFrame = requestAnimationFrame(this.rotate)
   }
 
   stopRotation = () => {
-    clearInterval(this.rotationInterval)
+    cancelAnimationFrame(this.rotationAnimationFrame)
   }
 
   render () {

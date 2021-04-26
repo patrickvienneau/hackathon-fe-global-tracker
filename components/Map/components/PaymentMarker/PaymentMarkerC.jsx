@@ -1,6 +1,8 @@
 import React, { PureComponent, createRef } from 'react'
+import PropTypes from 'prop-types'
 import PaymentMarker from './PaymentMarker'
 import { LINE_ANIMATION_DURATION_MS_PER_100_LENGTH, PIN_ANIMATION_DURATION_MS } from 'constants/mapConstants'
+import noop from 'lodash/noop'
 
 class PaymentMarkerC extends PureComponent {
   constructor (props) {
@@ -19,12 +21,18 @@ class PaymentMarkerC extends PureComponent {
   }
 
   componentDidUpdate () {
+    const { onAnimationComplete } = this.props
+
     const animationDuration = this.getAnimationDuration()
 
-    this.setState({ pathElLength: this.getLinePathLength() })
+    // this.setState({ pathElLength: this.getLinePathLength() })
 
     if (animationDuration && !this.showEndPinTimeout) {
-      this.showEndPinTimeout = setTimeout(() => { this.setState({ showEndPin: true }) }, animationDuration)
+      this.showEndPinTimeout = setTimeout(() => {
+        this.setState({ showEndPin: true })
+
+        onAnimationComplete()
+      }, animationDuration)
     }
   }
 
@@ -57,9 +65,10 @@ class PaymentMarkerC extends PureComponent {
   }
 
   render () {
-    const { showEndPin, pathElLength } = this.state
+    const { showEndPin } = this.state
 
     const animationDuration = this.getAnimationDuration()
+    const pathElLength = this.getLinePathLength()
 
     return (
       <PaymentMarker
@@ -71,6 +80,14 @@ class PaymentMarkerC extends PureComponent {
       />
     )
   }
+}
+
+PaymentMarkerC.defaultProps = {
+  onAnimationComplete: noop,
+}
+
+PaymentMarkerC.propTypes = {
+  onAnimationComplete: PropTypes.func,
 }
 
 export default PaymentMarkerC

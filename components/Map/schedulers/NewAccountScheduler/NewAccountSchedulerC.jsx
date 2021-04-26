@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import NewAccountScheduler from './NewAccountScheduler'
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
   }
 }
 
-class NewAccountSchedulerC extends PureComponent {
+class NewAccountSchedulerC extends Component {
   constructor (props) {
     super(props)
 

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PaymentScheduler from './PaymentScheduler'
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-class PaymentSchedulerC extends PureComponent {
+class PaymentSchedulerC extends Component {
   constructor (props) {
     super(props)
 
@@ -56,11 +56,7 @@ class PaymentSchedulerC extends PureComponent {
     this.setState(({ registeredPaymentIds: prevRegisteredPaymentIds, activePaymentIds: prevActivePaymentIds }) => ({
       registeredPaymentIds: concat(prevRegisteredPaymentIds, paymentId),
       activePaymentIds: concat(prevActivePaymentIds, paymentId),
-    }), () => {
-      this.unregisterTimeout = setTimeout(() => {
-        this.unregisterPayment(paymentId)
-      }, DISPLAY_COOLDOWN_DURATION_MS)
-    })
+    }))
   }
 
   unregisterPayment = (paymentId) => {
@@ -82,6 +78,12 @@ class PaymentSchedulerC extends PureComponent {
     return activePayments
   }
 
+  handlePaymentMarketAnimationComplete = (id) => {
+    this.unregisterTimeout = setTimeout(() => {
+      this.unregisterPayment(id)
+    }, DISPLAY_COOLDOWN_DURATION_MS)
+  }
+
   render () {
     const activePayments = this.getActivePayments()
 
@@ -89,6 +91,7 @@ class PaymentSchedulerC extends PureComponent {
       <PaymentScheduler
         {...this.props}
         payments={activePayments}
+        handlePaymentMarketAnimationComplete={this.handlePaymentMarketAnimationComplete}
       />
     )
   }

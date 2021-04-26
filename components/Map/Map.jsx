@@ -34,7 +34,7 @@ const Map = forwardRef(({
         stroke='#FFFFFF'
         strokeWidth={0.5}
       >
-        {({ geographies }) =>
+        {({ geographies = [] }) =>
           geographies.map((geo) => (
             <Geography
               className='geography'

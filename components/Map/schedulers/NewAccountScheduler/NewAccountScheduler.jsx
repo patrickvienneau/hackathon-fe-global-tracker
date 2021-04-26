@@ -14,13 +14,14 @@ const NewAccountScheduler = ({
       component='g'
     >
       {
-        map(accounts, (account, ii) => {
+        map(accounts, (account) => {
           const lat = get(account, 'geocoding.accountLatLng.lat')
           const lng = get(account, 'geocoding.accountLatLng.lng')
+          const key = get(account, 'id')
 
           return (
             <CSSTransition
-              key={ii}
+              key={key}
               in={true}
               timeout={5000}
               classNames='schedulerFade'

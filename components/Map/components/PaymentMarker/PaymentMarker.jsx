@@ -9,17 +9,19 @@ const PaymentMarker = forwardRef(({
   pathElLength = 250,
   animationDuration,
   showEndPin = false,
+  fromCoordinates = [],
+  toCoordinates = [],
 }, ref) => (
   <g className='PaymentMarker'>
     <PinC
-      coordinates={[2.3522, 48.8566]}
+      coordinates={fromCoordinates}
       color={color}
     />
 
     <Line
       ref={ref}
-      from={[2.3522, 48.8566]}
-      to={[-74.006, 40.7128]}
+      from={fromCoordinates}
+      to={toCoordinates}
       color={color}
       strokeWidth={1}
       strokeLinecap='round'
@@ -33,7 +35,7 @@ const PaymentMarker = forwardRef(({
     {
       showEndPin && (
         <PinC
-          coordinates={[-74.006, 40.7128]}
+          coordinates={toCoordinates}
           color={color}
         />
       )
@@ -46,6 +48,8 @@ PaymentMarker.propTypes = {
   pathElLength: PropTypes.number,
   animationDuration: PropTypes.number,
   showEndPin: PropTypes.bool,
+  fromCoordinates: PropTypes.array,
+  toCoordinates: PropTypes.array,
 }
 
 export default PaymentMarker

@@ -56,7 +56,8 @@ const composedEnhancers = compose(applyMiddleware(...middlewares), ...enhancers)
 const store = createStore(reducers, {}, composedEnhancers)
 
 // Connect to mock BE
-store.dispatch(connect('ws://localhost:3000'))
+store.dispatch(connect(`wss://ws.qa.veem.com/?accessToken=${WEBSOCKET_ACCCESS_TOKEN}`))
+// store.dispatch(connect('ws://localhost:3000'))
 
 // Connect to QA
 // To acquire accessToken, call https://api.qa.veem.com/api/customers/ws/connect/info/:accountID

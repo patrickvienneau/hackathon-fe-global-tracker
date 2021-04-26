@@ -13,11 +13,11 @@ import find from 'lodash/find'
 import assign from 'lodash/assign'
 import { DISPLAY_COOLDOWN_DURATION_MS } from 'constants/mapConstants'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+  const payments = get(state, 'paymentR', [])
+
   return {
-    payments: [
-      { id: '1' },
-    ],
+    payments,
   }
 }
 
@@ -26,31 +26,19 @@ class PaymentSchedulerC extends PureComponent {
     super(props)
 
     this.state = {
+      registeredPaymentIds: [],
       activePaymentIds: [],
     }
   }
 
-  componentDidMount () {
-    const { payments } = this.props
-
-    // ONLY FOR DEV - REMOVE ONCE WE HAVE REAL DATA
-    forEach(payments, payment => {
-      const paymentId = get(payment, 'id')
-
-      this.registerPayment(paymentId)
-    })
-  }
-
-  componentDidUpdate (prevProps) {
+  componentDidUpdate () {
     const { payments: nextPayments } = this.props
-    const { payments: prevPayments } = prevProps
-
-    const prevPaymentIds = map(prevPayments, 'id')
+    const { registeredPaymentIds: prevRegisteredPaymentIds } = this.state
 
     const paymentsToRegister = reject(nextPayments, payment => {
       const paymentId = get(payment, 'id')
 
-      return includes(prevPaymentIds, paymentId)
+      return includes(prevRegisteredPaymentIds, paymentId)
     })
 
     forEach(paymentsToRegister, paymentToRegister => {
@@ -61,7 +49,8 @@ class PaymentSchedulerC extends PureComponent {
   }
 
   registerPayment = (paymentId) => {
-    this.setState(({ activePaymentIds: prevActivePaymentIds }) => ({
+    this.setState(({ registeredPaymentIds: prevRegisteredPaymentIds, activePaymentIds: prevActivePaymentIds }) => ({
+      registeredPaymentIds: concat(prevRegisteredPaymentIds, paymentId),
       activePaymentIds: concat(prevActivePaymentIds, paymentId),
     }), () => {
       setTimeout(() => {

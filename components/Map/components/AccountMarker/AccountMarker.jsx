@@ -5,11 +5,12 @@ import PinC from 'components/Map/extensions/Pin/PinC'
 
 const AccountMarker = forwardRef(({
   color = '#007fe0',
+  coordinates = [],
 }, ref) => (
   <g className='AccountMarker'>
     <PinC
       ref={ref}
-      coordinates={[2.3522, 48.8566]}
+      coordinates={coordinates}
       color={color}
     />
   </g>
@@ -17,6 +18,7 @@ const AccountMarker = forwardRef(({
 
 AccountMarker.propTypes = {
   color: PropTypes.string,
+  coordinates: PropTypes.array,
 }
 
 export default AccountMarker

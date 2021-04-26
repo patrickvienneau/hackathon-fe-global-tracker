@@ -13,11 +13,11 @@ import find from 'lodash/find'
 import assign from 'lodash/assign'
 import { DISPLAY_COOLDOWN_DURATION_MS } from 'constants/mapConstants'
 
-const mapStateToProps = () => {
+const mapStateToProps = state => {
+  const accounts = get(state, 'accountR', [])
+
   return {
-    accounts: [
-      { id: '1' },
-    ],
+    accounts,
   }
 }
 
@@ -26,31 +26,30 @@ class NewAccountSchedulerC extends PureComponent {
     super(props)
 
     this.state = {
+      registeredAccountIds: [],
       activeAccountIds: [],
     }
   }
 
-  componentDidMount () {
-    const { accounts } = this.props
+  // componentDidMount () {
+  //   const { accounts } = this.props
+  //
+  //   // ONLY FOR DEV - REMOVE ONCE WE HAVE REAL DATA
+  //   forEach(accounts, account => {
+  //     const accountId = get(account, 'id')
+  //
+  //     this.registerAccount(accountId)
+  //   })
+  // }
 
-    // ONLY FOR DEV - REMOVE ONCE WE HAVE REAL DATA
-    forEach(accounts, account => {
-      const accountId = get(account, 'id')
-
-      this.registerAccount(accountId)
-    })
-  }
-
-  componentDidUpdate (prevProps) {
+  componentDidUpdate () {
     const { accounts: nextAccounts } = this.props
-    const { accounts: prevAccounts } = prevProps
-
-    const prevAccountIds = map(prevAccounts, 'id')
+    const { registeredAccountIds: prevRegisteredAccountIds } = this.state
 
     const accountsToRegister = reject(nextAccounts, account => {
       const accountId = get(account, 'id')
 
-      return includes(prevAccountIds, accountId)
+      return includes(prevRegisteredAccountIds, accountId)
     })
 
     forEach(accountsToRegister, accountToRegister => {
@@ -61,7 +60,8 @@ class NewAccountSchedulerC extends PureComponent {
   }
 
   registerAccount = (accountId) => {
-    this.setState(({ activeAccountIds: prevActiveAccountIds }) => ({
+    this.setState(({ registeredAccountIds: prevRegisteredAccountIds, activeAccountIds: prevActiveAccountIds }) => ({
+      registeredAccountIds: concat(prevRegisteredAccountIds, accountId),
       activeAccountIds: concat(prevActiveAccountIds, accountId),
     }), () => {
       setTimeout(() => {

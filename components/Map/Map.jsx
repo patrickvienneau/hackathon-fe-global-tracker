@@ -2,7 +2,7 @@ import './Map.scss'
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps'
-import PinC from './extensions/Pin/PinC'
+import NewAccountSchedulerC from 'components/Map/schedulers/NewAccountScheduler/NewAccountSchedulerC'
 import PaymentSchedulerC from 'components/Map/schedulers/PaymentScheduler/PaymentsSchedulerC'
 import { GEO_TOPO_URL } from 'constants/geography'
 
@@ -43,7 +43,7 @@ const Map = forwardRef(({
 
       <PaymentSchedulerC />
 
-      <PinC coordinates={[-120.006, 35.7128]} />
+      <NewAccountSchedulerC />
     </ComposableMap>
   </div>
 ))

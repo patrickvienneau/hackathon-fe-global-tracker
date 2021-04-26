@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 @keyframes grow {
   to {
     r: 15;
@@ -14,12 +16,14 @@
   }
 }
 
-.rsm-marker {
+.Pin {
   &.hidden {
     opacity: 0;
   }
 
   circle {
+    fill: $grey-700;
+
     &.animate {
       animation-name: grow, fade;
       animation-fill-mode: forwards;

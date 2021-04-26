@@ -59,12 +59,16 @@ class NewAccountSchedulerC extends PureComponent {
     })
   }
 
+  componentWillUnmount () {
+    clearTimeout(this.unregisterTimeout)
+  }
+
   registerAccount = (accountId) => {
     this.setState(({ registeredAccountIds: prevRegisteredAccountIds, activeAccountIds: prevActiveAccountIds }) => ({
       registeredAccountIds: concat(prevRegisteredAccountIds, accountId),
       activeAccountIds: concat(prevActiveAccountIds, accountId),
     }), () => {
-      setTimeout(() => {
+      this.unregisterTimeout = setTimeout(() => {
         this.unregisterAccount(accountId)
       }, DISPLAY_COOLDOWN_DURATION_MS)
     })

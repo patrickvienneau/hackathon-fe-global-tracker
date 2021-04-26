@@ -1,3 +1,8 @@
 .App {
+  opacity: 0;
+  transition: opacity ease-in-out 1000ms;
 
+  &.shouldRender {
+    opacity: 1;
+  }
 }

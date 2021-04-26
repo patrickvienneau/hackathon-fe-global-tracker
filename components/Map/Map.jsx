@@ -26,17 +26,21 @@ const Map = forwardRef(({
         scale,
       }}
     >
-      <Graticule stroke="#DDD" />
+      <Graticule className='grid' />
 
       <Geographies
+        className='geographies'
         geography={GEO_TOPO_URL}
-        fill='#D6D6DA'
         stroke='#FFFFFF'
         strokeWidth={0.5}
       >
         {({ geographies }) =>
           geographies.map((geo) => (
-            <Geography key={geo.rsmKey} geography={geo} />
+            <Geography
+              className='geography'
+              key={geo.rsmKey}
+              geography={geo}
+            />
           ))
         }
       </Geographies>

@@ -9,22 +9,19 @@ const Pin = ({
   radius = 2,
   coordinates = [],
   isHidden = false,
-  color = '#F53F53',
 }) => (
   <Marker
-    className={classNames('Marker', { hidden: isHidden })}
+    className={classNames('Pin', { hidden: isHidden })}
     coordinates={coordinates}
   >
     <circle
       className='noAnimate'
       r={radius}
-      fill={color}
     />
 
     <circle
       className='animate'
       r={radius}
-      fill={color}
       style={{
         animationDuration: `${PIN_ANIMATION_DURATION_MS}ms`,
       }}
@@ -36,7 +33,6 @@ Pin.propTypes = {
   radius: PropTypes.number,
   coordinates: PropTypes.array,
   isHidden: PropTypes.bool,
-  color: PropTypes.string,
 }
 
 export default Pin

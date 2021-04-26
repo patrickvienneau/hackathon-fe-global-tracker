@@ -1,6 +1,6 @@
 import React, { PureComponent, createRef } from 'react'
 import PaymentMarker from './PaymentMarker'
-import { LINE_ANIMATION_DURATION_MS_PER_100_LENGTH } from 'constants/mapConstants'
+import { LINE_ANIMATION_DURATION_MS_PER_100_LENGTH, PIN_ANIMATION_DURATION_MS } from 'constants/mapConstants'
 
 class PaymentMarkerC extends PureComponent {
   constructor (props) {
@@ -28,6 +28,10 @@ class PaymentMarkerC extends PureComponent {
     }
   }
 
+  componentWillUnmount () {
+    clearTimeout(this.showEndPinTimeout)
+  }
+
   getLinePath = () => {
     try {
       return this.line.current.getElementsByTagName('path')[0]
@@ -46,7 +50,7 @@ class PaymentMarkerC extends PureComponent {
   getAnimationDuration = () => {
     try {
       const pathLength = this.getLinePathLength()
-      return pathLength / 100 * LINE_ANIMATION_DURATION_MS_PER_100_LENGTH
+      return pathLength / 100 * LINE_ANIMATION_DURATION_MS_PER_100_LENGTH - PIN_ANIMATION_DURATION_MS
     } catch (e) {
       return 0
     }

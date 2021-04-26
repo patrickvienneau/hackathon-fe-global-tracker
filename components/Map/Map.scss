@@ -1,7 +1,15 @@
+@import 'styles/variables';
+
 .Map {
-  .rsm-geography {
+  .geography {
+    fill: $grey-600;
+
     &:focus {
       outline: none;
     }
+  }
+
+  .grid {
+    stroke: $grey-500;
   }
 }

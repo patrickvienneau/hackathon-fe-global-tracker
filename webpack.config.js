@@ -32,6 +32,7 @@ module.exports = {
       store: path.resolve(__dirname, 'store'),
       constants: path.resolve(__dirname, 'constants'),
       utils: path.resolve(__dirname, 'utils'),
+      styles: path.resolve(__dirname, 'styles'),
     },
     extensions: [
       '.jsx',

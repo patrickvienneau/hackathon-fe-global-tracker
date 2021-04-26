@@ -5,7 +5,6 @@ import Line from 'components/Map/extensions/Line/Line'
 import PinC from 'components/Map/extensions/Pin/PinC'
 
 const PaymentMarker = forwardRef(({
-  color = '#007fe0',
   pathElLength = 250,
   animationDuration,
   showEndPin = false,
@@ -15,14 +14,12 @@ const PaymentMarker = forwardRef(({
   <g className='PaymentMarker'>
     <PinC
       coordinates={fromCoordinates}
-      color={color}
     />
 
     <Line
       ref={ref}
       from={fromCoordinates}
       to={toCoordinates}
-      color={color}
       strokeWidth={1}
       strokeLinecap='round'
       style={{
@@ -36,7 +33,6 @@ const PaymentMarker = forwardRef(({
       showEndPin && (
         <PinC
           coordinates={toCoordinates}
-          color={color}
         />
       )
     }
@@ -44,7 +40,6 @@ const PaymentMarker = forwardRef(({
 ))
 
 PaymentMarker.propTypes = {
-  color: PropTypes.string,
   pathElLength: PropTypes.number,
   animationDuration: PropTypes.number,
   showEndPin: PropTypes.bool,

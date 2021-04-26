@@ -48,12 +48,16 @@ class PaymentSchedulerC extends PureComponent {
     })
   }
 
+  componentWillUnmount () {
+    clearTimeout(this.unregisterTimeout)
+  }
+
   registerPayment = (paymentId) => {
     this.setState(({ registeredPaymentIds: prevRegisteredPaymentIds, activePaymentIds: prevActivePaymentIds }) => ({
       registeredPaymentIds: concat(prevRegisteredPaymentIds, paymentId),
       activePaymentIds: concat(prevActivePaymentIds, paymentId),
     }), () => {
-      setTimeout(() => {
+      this.unregisterTimeout = setTimeout(() => {
         this.unregisterPayment(paymentId)
       }, DISPLAY_COOLDOWN_DURATION_MS)
     })

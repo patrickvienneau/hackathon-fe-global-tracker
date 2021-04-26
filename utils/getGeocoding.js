@@ -12,9 +12,9 @@ const getLatLng = async (location) => {
 }
 
 const getGeocoding = async (message) => {
-  const { type, data } = message
+  const { actionType, data } = message
 
-  if (type === 'H_PAYMENT_CREATED') {
+  if (actionType === 'H_PAYMENT_CREATED') {
     const payerCountryCode = get(data, 'payer.isoCountryCode')
     const payerCity = get(data, 'payer.city')
     const payeeCountryCode = get(data, 'payee.isoCountryCode')
@@ -29,7 +29,7 @@ const getGeocoding = async (message) => {
     return { payerLatLng, payeeLatLng }
   }
 
-  if (type === 'H_ACCOUNT_CREATED') {
+  if (actionType === 'H_ACCOUNT_CREATED') {
     const accountCountryCode = get(data, 'isoCountryCode')
     const accountCity = get(data, 'city')
     const accountLocation = `${accountCity},${accountCountryCode}`

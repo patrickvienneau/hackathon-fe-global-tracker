@@ -27,6 +27,7 @@
     "convert-string-to-number": "^1.0.3",
     "country-list": "^2.2.0",
     "currency-formatter": "^1.5.7",
+    "d3-scale": "^3.3.0",
     "eslint": "^7.24.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-config-standard-react": "^11.0.1",

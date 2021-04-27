@@ -13,6 +13,16 @@ const CountryGDVList = ({
     <h3>GDV Statistics</h3>
 
     <ul>
+      <li>
+        <label>
+          <span className='countryName'><strong>Total</strong></span>
+
+          <span className='amount'><strong>{currencyFormatter.format(totalAmount, { code: 'USD' })}</strong></span>
+        </label>
+      </li>
+    </ul>
+
+    <ul>
       {
         map(countryListSummary, ({ countryCode, amount }) => (
           <li key={countryCode}>

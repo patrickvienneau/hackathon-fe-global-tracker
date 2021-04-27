@@ -43,6 +43,7 @@ module.exports = {
       '.js',
       '.scss',
       '.css',
+      '.json',
     ],
   },
   plugins: [

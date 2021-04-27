@@ -5,6 +5,7 @@
   transition: opacity ease-in-out 1000ms;
   display: flex;
   height: 100%;
+  background-color: #fcfcfcfc;
 
   &.shouldRender {
     opacity: 1;
@@ -15,12 +16,19 @@
     flex-direction: column;
     flex-shrink: 0;
     width: 260px;
-    border-right: 1px solid $grey-600;
-    padding-left: 25px;
-    padding-right: 25px;
+    background-color: #eee;
+    color: #444;
+    border-right: 1px solid #ccc;
+    padding: 15px 25px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 
-    > * {
-      flex: 1 0 50%;
+    .Logo {
+      margin: 10px auto 15px;
+      width: 125px;
+    }
+
+    > :not(.Logo) {
+      flex-grow: 1;
     }
   }
 
@@ -33,12 +41,12 @@
     .Map {
       .PaymentMarker {
         .Line {
-          stroke: #f3722c;
+          stroke: #577590;
         }
 
         .Pin {
           circle {
-            fill: #f3722c;
+            fill: #577590;
           }
         }
       }

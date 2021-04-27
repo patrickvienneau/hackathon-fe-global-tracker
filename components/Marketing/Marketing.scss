@@ -1,0 +1,25 @@
+@import 'styles/variables';
+
+.Marketing {
+  .Map {
+    .PaymentMarker {
+      .Line {
+        stroke: $grey-800;
+      }
+
+      .Pin {
+        circle {
+          fill: $grey-800;
+        }
+      }
+    }
+
+    .AccountMarker {
+      .Pin {
+        circle {
+          fill: $grey-800;
+        }
+      }
+    }
+  }
+}

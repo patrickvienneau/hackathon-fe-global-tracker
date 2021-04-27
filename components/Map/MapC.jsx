@@ -1,7 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import converter from 'convert-string-to-number'
 import Map from './Map'
 import now from 'lodash/now'
+import get from 'lodash/get'
+import reduce from 'lodash/reduce'
+import mapValues from 'lodash/mapValues'
+
+const mapStateToProps = (state) => {
+  const payments = get(state, 'paymentR', [])
+
+  return {
+    payments,
+  }
+}
 
 class MapC extends Component {
   constructor (props) {
@@ -9,7 +22,7 @@ class MapC extends Component {
 
     this.state = {
       mouseDown: false,
-      xOffset: 70,
+      xOffset: 120,
       yOffset: 0,
     }
   }
@@ -81,12 +94,41 @@ class MapC extends Component {
     cancelAnimationFrame(this.rotationAnimationFrame)
   }
 
+  getGDVRatioByCountryCode = () => {
+    const { payments } = this.props
+
+    const gdvByCountryCode = reduce(payments, (acc, payment) => {
+      const senderCountryCode = get(payment, 'data.payer.isoCountryCode')
+      const receiverCountryCode = get(payment, 'data.payee.isoCountryCode')
+      const usdAmount = get(payment, 'data.usdAmount')
+
+      if (!acc[senderCountryCode]) acc[senderCountryCode] = 0
+      if (!acc[receiverCountryCode]) acc[receiverCountryCode] = 0
+
+      acc[senderCountryCode] = acc[senderCountryCode] + converter(usdAmount)
+      acc[receiverCountryCode] = acc[receiverCountryCode] + converter(usdAmount)
+
+      return acc
+    }, {})
+
+    const highestGDV = reduce(gdvByCountryCode, (acc, amount) => {
+      if (amount > acc) acc = amount
+
+      return acc
+    }, 0)
+
+    return mapValues(gdvByCountryCode, gdv => gdv / highestGDV)
+  }
+
   render () {
     const { xOffset, yOffset } = this.state
+
+    const gdvByCountryCode = this.getGDVRatioByCountryCode()
 
     return (
       <Map
         {...this.props}
+        gdvByCountryCode={gdvByCountryCode}
         xOffset={xOffset}
         yOffset={yOffset}
       />
@@ -100,6 +142,7 @@ MapC.defaultProps = {
 
 MapC.propTypes = {
   isGlobe: PropTypes.bool,
+  payments: PropTypes.array,
 }
 
-export default MapC
+export default connect(mapStateToProps)(MapC)

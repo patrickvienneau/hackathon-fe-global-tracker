@@ -23,14 +23,14 @@ const PaymentMarker = forwardRef(({
       strokeWidth={1}
       strokeLinecap='round'
       style={{
-        strokeDasharray: offsetLength,
-        strokeDashoffset: offsetLength,
-        animationDuration: `${animationDuration}ms`,
+        // strokeDasharray: offsetLength,
+        // strokeDashoffset: offsetLength,
+        // animationDuration: `${animationDuration}ms`,
       }}
     />
 
     {
-      showEndPin && (
+      (true || showEndPin) && (
         <PinC
           coordinates={toCoordinates}
         />

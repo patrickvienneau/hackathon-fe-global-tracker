@@ -9,7 +9,7 @@ const NewAccountList = ({
   totalCount = 0,
 }) => (
   <div className='NewAccountList'>
-    <h3>GDV Statistics</h3>
+    <h3>New Account Statistics</h3>
 
     <ul>
       {
